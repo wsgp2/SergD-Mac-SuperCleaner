@@ -1,96 +1,49 @@
 # 🧹 SergD Mac SuperCleaner
 
-![SergD Mac SuperCleaner](img/logo.png)
-
-## 🌟 Мощный инструмент очистки для macOS от SergD
-
-SergD Mac SuperCleaner — это эффективный инструмент для глубокой очистки и оптимизации вашей macOS. Программа освобождает десятки гигабайт места и ускоряет работу Mac, очищая системные файлы, которые накапливаются со временем.
-
-[![Telegram](https://img.shields.io/badge/Telegram-@sergei__dyshkant-blue?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/sergei_dyshkant)
-
-## 📊 Что может очистить SuperCleaner?
-
-### 1. 🔄 Кэш браузеров
-- **Chrome, Safari, Firefox, Edge** — кэш, cookie, история
-- **Браузерные хранилища** — Service Workers, Local Storage
-- **Другие браузеры** — Яндекс.Браузер, Brave, Arc
-
-### 2. 🗑️ Системный мусор
-- **Системные кэши** — временные файлы macOS
-- **Логи системы** — журналы событий
-- **Корзина** — очистка на всех подключенных дисках
-- **Временные файлы** — промежуточные данные
-
-### 3. 🍎 Приложения Apple
-- **iOS бэкапы** — резервные копии iPhone и iPad
-- **iTunes/Music кэш** — временные файлы медиаприложений
-- **Messages вложения** — кэш вложений сообщений
-- **Mail кэш** — временные файлы почты
-- **Установщики macOS** — остатки после обновлений
-
-### 4. 👨‍💻 Инструменты разработчика
-- **Xcode** — DerivedData, Archives, DeviceSupport
-- **Homebrew, npm, pip, yarn** — кэши пакетных менеджеров
-- **Docker** — неиспользуемые образы и контейнеры
-- **Gradle, Maven** — сборочные кэши
-
-### 5. 💬 Мессенджеры и медиа
-- **Telegram** — кэш медиа, стикеров, анимаций
-- **Discord, Slack** — накопленный медиакэш
-- **Spotify** — кэш потоковой музыки
-
-### 6. 💾 Системная оптимизация
-- **Time Machine снимки** — локальные резервные копии
-- **Spotlight индекс** — перестройка поискового индекса
-- **DNS кэш** — очистка кэша DNS
-- **Неактивная память** — освобождение памяти
-
-## 🚀 Особенности
-
-- **💯 Безопасность** — Не удаляет личные файлы и данные
-- **🏎️ Производительность** — Мгновенно освобождает десятки ГБ места
-- **🔍 Информативность** — Показывает освобожденное место по каждой категории
-- **🧠 Интеллектуальность** — Очищает только ненужные файлы
+Единый рабочий инструмент — скрипт `mac-cleaner-pro.sh`. Все сторонние проекты и исходники перенесены в `junkyard/`, чтобы не отвлекать.
 
 ## 📦 Установка
 
 ```bash
-# Клонирование репозитория
 git clone https://github.com/wsgp2/SergD-Mac-SuperCleaner.git
 cd SergD-Mac-SuperCleaner
-
-# Установка прав
-chmod +x mac-cleaner-pro.sh
+chmod +x mac-cleaner-pro.sh install.sh
+./install.sh   # создаст ярлык serg-cleaner
 ```
 
-## 🔥 Использование
+## 🔥 Запуск
 
 ```bash
-# Базовая очистка
+# стандартная очистка
 ./mac-cleaner-pro.sh
 
-# Глубокая очистка (с правами администратора)
+# с правами администратора (рекомендуется)
 sudo ./mac-cleaner-pro.sh
+
+# полезные флаги
+./mac-cleaner-pro.sh -n        # dry-run: показать, что будет удалено
+./mac-cleaner-pro.sh -y        # авто-подтверждения (для будущих опций)
+./mac-cleaner-pro.sh -D        # дополнительно чистить Downloads (>30 дней)
 ```
 
-## 📸 Скриншоты
+## 📊 Что очищается
+- **Браузеры**: Chrome, Safari, Firefox, Edge, Brave, Arc, Яндекс.Браузер
+- **Система**: кэши `/Library`, `/private/var/folders`, временные каталоги, логи, корзина
+- **Apple**: Mail, Messages, iOS бэкапы, iTunes/Music, App Store, CrashReporter
+- **Dev**: Xcode (DerivedData, Archives, DeviceSupport, симулятор), Homebrew, npm, yarn, pip, Docker, Gradle, Maven
+- **Приложения**: Telegram, Slack, Discord, Spotify, JetBrains IDEs
+- **Оптимизация**: DNS кэш, локальные снимки Time Machine, индекс Spotlight
 
-![SergD Mac SuperCleaner в действии](img/screenshot.png)
+## 🔐 Безопасность и стабильность
+- Корректная работа при `sudo` (очистка в домашней папке реального пользователя)
+- Безопасное удаление через `find -mindepth 1` (включая скрытые файлы)
+- Режим `--dry-run` для проверки, что будет удалено
+- Проверка наличия утилит перед вызовом (`docker`, `brew`, `npm`, и т.д.)
+- Лог в `/tmp/mac-cleaner-YYYYmmdd-HHMMSS.log`
 
 ## 📝 Лицензия
-
 MIT License
 
-## 🙏 Благодарности
-
-Проект является форком и значительным улучшением следующих проектов:
-- [mac-cleanup-py](https://github.com/mac-cleanup/mac-cleanup-py)
-- [Clean-Me](https://github.com/Kevin-De-Koninck/Clean-Me)
-- [MacCleaner](https://github.com/ViniciusDeep/MacCleaner)
-
-## 👨‍💻 Автор
-
-**Sergei Dyshkant (SergD)**
-
-- [Telegram SergD](https://t.me/sergei_dyshkant)
-- [GitHub SergD](https://github.com/wsgp2)
+## Контакты
+- Telegram: https://t.me/sergei_dyshkant
+- GitHub: https://github.com/wsgp2

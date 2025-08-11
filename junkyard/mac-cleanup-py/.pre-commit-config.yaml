@@ -1,0 +1,54 @@
+default_stages:
+  - push
+
+repos:
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.29.1
+    hooks:
+      - id: commitizen
+        name: Check Convenient Commits
+        stages: [ commit-msg ]
+
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+        name: Run black
+        types: [ python ]
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: Run isort
+        types: [ python ]
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: Run pytest
+        language: system
+        pass_filenames: false
+        types: [ python ]
+        entry: poetry run pytest
+
+      - id: pyright
+        name: Run pyright
+        language: system
+        pass_filenames: false
+        types: [ python ]
+        entry: poetry run pyright
+
+      - id: ruff
+        name: Run ruff
+        language: system
+        pass_filenames: false
+        types: [ python ]
+        entry: poetry run ruff check .
+
+      - id: docformatter
+        name: Run docformatter
+        language: system
+        pass_filenames: false
+        types: [ python ]
+        entry: poetry run docformatter -cr . --config ./pyproject.toml
